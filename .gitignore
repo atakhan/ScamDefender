@@ -1,0 +1,58 @@
+# Gradle / Kotlin JVM
+.gradle/
+build/
+out/
+.kotlin/
+*.class
+*.war
+*.ear
+*.log
+hs_err_pid*
+
+# Local JDK (scripts/setup-jdk.ps1)
+.jdk/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.swp
+*~
+
+# Android (android-app module)
+local.properties
+.cxx/
+.externalNativeBuild/
+captures/
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# ML models & native libs (scripts/setup-models.ps1)
+# Keep models/README.md — everything else is downloaded locally.
+models/silero/
+models/minilm/
+models/sherpa-ru/
+models/**/*.onnx
+models/**/*.gguf
+models/**/*.bin
+models/**/*.tar.*
+models/**/*.wav
+core/libs/
+
+# Demo / eval output
+reports/
+report.json
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Secrets / local overrides
+.env
+.env.*
+*.local

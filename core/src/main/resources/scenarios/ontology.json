@@ -1,0 +1,76 @@
+{
+  "stages": [
+    {
+      "id": "STAGE_0",
+      "name": "Normal contact",
+      "description": "Neutral opening, introduction, reaction check"
+    },
+    {
+      "id": "STAGE_1",
+      "name": "Authority / Framing",
+      "description": "Trust or fear frame: bank, police, government, security"
+    },
+    {
+      "id": "STAGE_2",
+      "name": "Problem injection",
+      "description": "Suspicious operation, hack, debt, error introduced"
+    },
+    {
+      "id": "STAGE_3",
+      "name": "Pressure escalation",
+      "description": "Urgency, cannot delay, cannot verify"
+    },
+    {
+      "id": "STAGE_4",
+      "name": "Control and isolation",
+      "description": "Do not tell anyone, follow instructions, stay on line"
+    },
+    {
+      "id": "STAGE_5",
+      "name": "Action execution",
+      "description": "Transfer money, SMS code, install app, device access"
+    },
+    {
+      "id": "STAGE_6",
+      "name": "Reinforcement",
+      "description": "Repeated pressure, control reinforcement"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "bank_fraud_impersonation",
+      "name": "Bank impersonation scam",
+      "typicalPath": ["STAGE_1", "STAGE_2", "STAGE_3", "STAGE_4", "STAGE_5"]
+    },
+    {
+      "id": "police_authority_scam",
+      "name": "Law enforcement scam",
+      "typicalPath": ["STAGE_1", "STAGE_2", "STAGE_3", "STAGE_4", "STAGE_5"]
+    },
+    {
+      "id": "child_in_trouble",
+      "name": "Family emergency scam",
+      "typicalPath": ["STAGE_2", "STAGE_3", "STAGE_4", "STAGE_5"]
+    },
+    {
+      "id": "financial_transfer_scam",
+      "name": "Financial transfer scam",
+      "typicalPath": ["STAGE_1", "STAGE_2", "STAGE_3", "STAGE_4", "STAGE_5"]
+    },
+    {
+      "id": "tech_support_scam",
+      "name": "Device takeover scam",
+      "typicalPath": ["STAGE_1", "STAGE_2", "STAGE_3", "STAGE_5"]
+    },
+    {
+      "id": "delivery_marketplace_scam",
+      "name": "Delivery / marketplace scam",
+      "typicalPath": ["STAGE_2", "STAGE_3", "STAGE_5"]
+    },
+    {
+      "id": "investment_fraud",
+      "name": "Investment fraud",
+      "typicalPath": ["STAGE_1", "STAGE_2", "STAGE_3", "STAGE_5"]
+    }
+  ]
+}
