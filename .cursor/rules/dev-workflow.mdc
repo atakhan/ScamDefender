@@ -1,0 +1,43 @@
+---
+description: Build, test, models, and Windows local workflow
+alwaysApply: true
+---
+
+# Dev workflow
+
+## Build / test
+
+```bash
+./gradlew :core:test :demo:build
+```
+
+Windows: `.\gradlew.bat …`. CI (`.github/workflows/ci.yml`) runs the same on Ubuntu + JDK 17 Temurin.
+
+## Demo CLI (`:demo`)
+
+```bash
+# Mock transcript → JSON report
+./gradlew :demo:run --args="--transcript samples/transcripts/bank_scam_01.txt --output report.json"
+
+# Eval suite
+./gradlew :demo:run --args="--eval --output reports/eval.json"
+
+# ML component status
+./gradlew :demo:run --args="--status"
+```
+
+## Local setup (Windows)
+
+- JDK: `scripts/setup-jdk.ps1` → project-local `.jdk/` (used by `gradlew.bat`)
+- Models (gitignored): `scripts/setup-models.ps1` → `models/` + `core/libs/` (Sherpa JARs)
+  - Silero VAD, MiniLM ONNX, Sherpa-ONNX GigaAM v2 Russian STT
+  - Override root: env `SCAMDEFENDER_MODELS`
+- Without models: keyword/heuristic fallbacks still work for transcript demos
+
+## Do not commit
+
+`.jdk/`, `models/**` binaries, `core/libs/`, `reports/`, `report.json`, secrets (see `.gitignore`).
+
+## Android
+
+`android-app/` is a stub; enable only with Android SDK + uncomment `include(":android-app")` and restore Android plugins. Not part of default MVP loop.

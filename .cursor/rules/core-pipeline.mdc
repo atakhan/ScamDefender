@@ -1,0 +1,47 @@
+---
+description: Core detection pipeline architecture and package map
+globs: core/**/*.kt
+alwaysApply: false
+---
+
+# Core engine pipeline
+
+Entry: `CoreEngineFactory` → `DetectionPipeline`.
+
+```
+SpeechSegment → FeatureExtractor → PatternDetector → StageTransitionDetector
+                                      ↓ (FSM llmTrigger)
+                         TriggeredScenarioModel → RiskAggregator → RiskStateMachine
+                                      → DetectionEvent (null if SAFE and no stage transition)
+```
+
+## Package map (`com.scamdefender.core`)
+
+| Package | Responsibility |
+|---------|----------------|
+| `pipeline` | `DetectionPipeline` orchestration, 60s transcript window |
+| `features` | Keyword/heuristic `FeatureVector` (urgency, authority, …) |
+| `patterns` | Aho-Corasick + ONNX MiniLM semantic matcher + `PatternFsm` |
+| `stages` | Temporal stage distribution / transitions |
+| `llm` | `ScenarioModel`; JVM uses `HeuristicScenarioModel` (MediaPipe/Gemma planned on Android) |
+| `risk` | Score aggregation + momentum-gated state machine |
+| `scenarios` | Load ontology / patterns bank JSON |
+| `stt` | `SherpaSttEngine` / `MockSttEngine` / `TranscriptParser` |
+| `audio` | Silero VAD, segmenter, WAV reader |
+| `ml` | `ModelPaths`, ONNX runtime holder |
+| `eval` | `EvalFramework` for manifest-driven cases |
+| `domain` | Serializable DTOs / enums |
+
+## Pattern detection
+
+- Keywords: Aho-Corasick over `patterns_bank.json` phrases
+- Semantics: MiniLM ONNX embeddings; falls back if models missing
+- Merge by `DetectedPatternType`, keep highest confidence
+- FSM sequence can set `llmTrigger` → scenario model runs sparingly
+
+## Wiring notes
+
+- `CoreEngineFactory.create()` wires real VAD/STT/ONNX with fallbacks
+- `forTranscript(segments)` swaps in `MockSttEngine` for demo/eval
+- Prefer extending ontology JSON / matchers over hardcoding new RU phrases in Kotlin when possible
+- Scenario IDs in JSON/prompts use snake_case (`bank_fraud_impersonation`); enums map in `ScenarioOntology` / `ResponseParser`

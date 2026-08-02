@@ -1,7 +1,6 @@
 package com.scamdefender.core.eval
 
 import com.scamdefender.core.domain.RiskLevel
-import com.scamdefender.core.domain.ScamScenario
 import com.scamdefender.core.pipeline.DetectionPipeline
 import com.scamdefender.core.stt.MockSttEngine
 import com.scamdefender.core.stt.TranscriptParser
@@ -16,8 +15,11 @@ data class EvalCase(
     val transcriptFile: String,
     val expectedScenario: String? = null,
     val expectedMinRisk: String = "SUSPICIOUS",
+    /** Upper bound on final risk (partial attacks, non-scam). Non-scam defaults to MONITORING if null. */
+    val expectedMaxRisk: String? = null,
     val isScam: Boolean = true,
     val expectedStageAtEnd: String? = null,
+    val tags: List<String> = emptyList(),
 )
 
 @Serializable
@@ -29,7 +31,16 @@ data class EvalCaseResult(
     val finalStage: String,
     val timeToHighRiskMs: Long?,
     val falsePositive: Boolean,
+    val tags: List<String> = emptyList(),
     val notes: List<String>,
+)
+
+@Serializable
+data class TagSlice(
+    val tag: String,
+    val totalCases: Int,
+    val passedCases: Int,
+    val passRate: Float,
 )
 
 @Serializable
@@ -38,7 +49,13 @@ data class EvalReport(
     val totalCases: Int,
     val passedCases: Int,
     val passRate: Float,
+    /** Non-scam cases with finalRisk ≥ SUSPICIOUS. */
     val falsePositiveRate: Float,
+    /** Scam cases that reached at least their expectedMinRisk. */
+    val scamRecall: Float,
+    /** hard_negative-tagged cases with finalRisk ≥ SUSPICIOUS. */
+    val hardNegativeFpRate: Float,
+    val byTag: List<TagSlice>,
     val results: List<EvalCaseResult>,
 )
 
@@ -56,9 +73,33 @@ class EvalFramework(
 
     fun run(cases: List<EvalCase>): EvalReport {
         val results = cases.map { runCase(it) }
+        val byId = cases.associateBy { it.id }
         val passed = results.count { it.passed }
-        val legitCases = results.filter { !cases.find { c -> c.id == it.id }!!.isScam }
-        val falsePositives = legitCases.count { it.falsePositive }
+
+        val nonScamResults = results.filter { byId.getValue(it.id).isScam.not() }
+        val falsePositives = nonScamResults.count { it.falsePositive }
+
+        val scamResults = results.filter { byId.getValue(it.id).isScam }
+        val scamHits =
+            scamResults.count { result ->
+                val min = RiskLevel.valueOf(byId.getValue(result.id).expectedMinRisk)
+                RiskLevel.valueOf(result.finalRiskLevel).ordinal >= min.ordinal
+            }
+
+        val hardNegatives = results.filter { "hard_negative" in it.tags }
+        val hardNegFp = hardNegatives.count { it.falsePositive }
+
+        val allTags = results.flatMap { it.tags }.toSet().sorted()
+        val byTag =
+            allTags.map { tag ->
+                val slice = results.filter { tag in it.tags }
+                TagSlice(
+                    tag = tag,
+                    totalCases = slice.size,
+                    passedCases = slice.count { it.passed },
+                    passRate = slice.count { it.passed }.toFloat() / slice.size.coerceAtLeast(1),
+                )
+            }
 
         return EvalReport(
             timestamp = java.time.Instant.now().toString(),
@@ -66,8 +107,15 @@ class EvalFramework(
             passedCases = passed,
             passRate = passed.toFloat() / cases.size.coerceAtLeast(1),
             falsePositiveRate =
-                if (legitCases.isEmpty()) 0f
-                else falsePositives.toFloat() / legitCases.size,
+                if (nonScamResults.isEmpty()) 0f
+                else falsePositives.toFloat() / nonScamResults.size,
+            scamRecall =
+                if (scamResults.isEmpty()) 0f
+                else scamHits.toFloat() / scamResults.size,
+            hardNegativeFpRate =
+                if (hardNegatives.isEmpty()) 0f
+                else hardNegFp.toFloat() / hardNegatives.size,
+            byTag = byTag,
             results = results,
         )
     }
@@ -80,6 +128,10 @@ class EvalFramework(
 
         val finalRisk = report.finalRiskLevel
         val minRisk = RiskLevel.valueOf(evalCase.expectedMinRisk)
+        val maxRisk =
+            evalCase.expectedMaxRisk?.let { RiskLevel.valueOf(it) }
+                ?: if (!evalCase.isScam) RiskLevel.MONITORING else null
+
         val detectedScenario = report.segments.lastOrNull()?.detectionEvent?.scenario?.name
         val finalStage = report.segments.lastOrNull()?.stageUpdate?.dominantStage?.name ?: "STAGE_0"
 
@@ -92,7 +144,10 @@ class EvalFramework(
 
         val notes = mutableListOf<String>()
         if (evalCase.isScam && finalRisk.ordinal < minRisk.ordinal) {
-            notes.add("Risk ${finalRisk.name} below expected ${minRisk.name}")
+            notes.add("Risk ${finalRisk.name} below expected min ${minRisk.name}")
+        }
+        if (maxRisk != null && finalRisk.ordinal > maxRisk.ordinal) {
+            notes.add("Risk ${finalRisk.name} above expected max ${maxRisk.name}")
         }
         evalCase.expectedScenario?.let { expected ->
             if (detectedScenario != null && !detectedScenario.contains(expected, ignoreCase = true)) {
@@ -101,10 +156,11 @@ class EvalFramework(
         }
 
         val passed =
-            when {
-                falsePositive -> false
-                evalCase.isScam -> finalRisk.ordinal >= minRisk.ordinal
-                else -> finalRisk.ordinal <= RiskLevel.MONITORING.ordinal
+            if (evalCase.isScam) {
+                finalRisk.ordinal >= minRisk.ordinal &&
+                    (maxRisk == null || finalRisk.ordinal <= maxRisk.ordinal)
+            } else {
+                maxRisk != null && finalRisk.ordinal <= maxRisk.ordinal
             }
 
         return EvalCaseResult(
@@ -115,6 +171,7 @@ class EvalFramework(
             finalStage = finalStage,
             timeToHighRiskMs = timeToHigh,
             falsePositive = falsePositive,
+            tags = evalCase.tags,
             notes = notes,
         )
     }

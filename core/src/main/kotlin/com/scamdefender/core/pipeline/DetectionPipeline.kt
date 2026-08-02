@@ -70,7 +70,7 @@ class DetectionPipeline(
         appendTranscript(segment)
 
         val features = featureExtractor.extract(segment)
-        val patternResult = patternDetector.detect(segment)
+        val patternResult = patternDetector.detect(segment, features)
         val stageUpdate = stageDetector.update(segment, features, patternResult.patterns)
 
         var scenario: ScenarioClassification? = null
@@ -82,7 +82,7 @@ class DetectionPipeline(
                 )
         }
 
-        val sequenceProgression = patternResult.patterns.size / 5f
+        val sequenceProgression = patternDetector.sequenceProgression()
         val riskScore =
             riskAggregator.compute(
                 timestampMs = segment.timestampMs,

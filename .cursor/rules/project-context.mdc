@@ -1,0 +1,38 @@
+---
+description: ScamDefender product context, modules, and non-negotiable constraints
+alwaysApply: true
+---
+
+# ScamDefender — project context
+
+Real-time **on-device** detection of social engineering escalation in reconstructed phone calls (mic capture → STT → hybrid detection). Not call recording, not spam blocking, not “is this a scammer” binary classification.
+
+## Product invariants
+
+- Detect **attack structure over time** (pressure sequence), not isolated keywords.
+- No direct GSM audio access; mic reconstruction only; no persistent audio storage.
+- Engine outputs risk events for UI / trusted contacts — it does **not** hang up the call.
+- Docs of record: `CONCEPT.md`, `CORE.md`, `SCAM_SCENARIOS.md`, `STAGES_DETECTION_SYSTEM.md` (README mentions `STACK_SPEC.md` — file may be missing).
+
+## Modules (Gradle)
+
+| Module | Role | In default build |
+|--------|------|------------------|
+| `:core` | Kotlin JVM detection engine | yes |
+| `:demo` | CLI (transcript / audio / eval / status) | yes |
+| `:android-app` | Post-MVP shell stub | **no** (`include` commented in `settings.gradle.kts`) |
+
+Package root: `com.scamdefender`. Version `0.1.0`. Kotlin 2.0 / JDK 17.
+
+## Domain vocabulary
+
+- **Stages** `STAGE_0`…`STAGE_6`: contact → authority → problem → pressure → isolation → action → reinforcement
+- **Risk** `SAFE` → `MONITORING` → `SUSPICIOUS` → `HIGH_RISK` → `CRITICAL` (temporal state machine, not one-shot)
+- **Patterns**: `AUTHORITY_PLAY`, `URGENCY_ESCALATION`, `ISOLATION_SIGNAL`, `ACTION_REQUEST`, `FEAR_THREAT`, `PROBLEM_INJECTION`
+- **Scenarios**: bank / police / child / investment / tech support / delivery / financial transfer
+
+Ontology + phrase bank: `core/src/main/resources/scenarios/{ontology,patterns_bank}.json`
+
+## Language / samples
+
+Primary attack language in samples and prompts: **Russian**. Transcripts: `samples/transcripts/`. Eval cases: `eval/manifest.json`.

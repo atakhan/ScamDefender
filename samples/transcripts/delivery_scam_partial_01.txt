@@ -1,0 +1,4 @@
+# Partial delivery scam — urgency without payment climax
+t+0s: "Проблема с доставкой посылки"
+t+10s: "срочно подтвердите адрес"
+t+20s: "курьер ждёт у дома, перезвоним через час"

@@ -87,7 +87,22 @@ private fun runEval(projectRoot: File, config: CliConfig) {
     framework.writeReport(report, outputFile)
 
     println("Eval: ${report.passedCases}/${report.totalCases} passed (${(report.passRate * 100).toInt()}%)")
-    println("False positive rate: ${(report.falsePositiveRate * 100).toInt()}%")
+    println("Scam recall (min risk): ${(report.scamRecall * 100).toInt()}%")
+    println("False positive rate (all non-scam): ${(report.falsePositiveRate * 100).toInt()}%")
+    println("Hard-negative FP rate: ${(report.hardNegativeFpRate * 100).toInt()}%")
+    report.byTag.forEach { slice ->
+        println(
+            "  tag=${slice.tag}: ${slice.passedCases}/${slice.totalCases} " +
+                "(${(slice.passRate * 100).toInt()}%)",
+        )
+    }
+    val failed = report.results.filter { !it.passed }
+    if (failed.isNotEmpty()) {
+        println("Failed:")
+        failed.forEach { r ->
+            println("  - ${r.id}: risk=${r.finalRiskLevel} notes=${r.notes.joinToString("; ")}")
+        }
+    }
     println("Report: ${outputFile.absolutePath}")
 }
 

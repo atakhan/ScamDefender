@@ -1,0 +1,418 @@
+{
+    "timestamp": "2026-08-02T14:20:56.609960400Z",
+    "totalCases": 28,
+    "passedCases": 27,
+    "passRate": 0.96428573,
+    "falsePositiveRate": 0.0,
+    "scamRecall": 0.9375,
+    "hardNegativeFpRate": 0.0,
+    "byTag": [
+        {
+            "tag": "easy",
+            "totalCases": 10,
+            "passedCases": 10,
+            "passRate": 1.0
+        },
+        {
+            "tag": "hard_negative",
+            "totalCases": 6,
+            "passedCases": 6,
+            "passRate": 1.0
+        },
+        {
+            "tag": "heldout",
+            "totalCases": 1,
+            "passedCases": 0,
+            "passRate": 0.0
+        },
+        {
+            "tag": "noise",
+            "totalCases": 3,
+            "passedCases": 3,
+            "passRate": 1.0
+        },
+        {
+            "tag": "paraphrase",
+            "totalCases": 6,
+            "passedCases": 5,
+            "passRate": 0.8333333
+        },
+        {
+            "tag": "partial",
+            "totalCases": 3,
+            "passedCases": 3,
+            "passRate": 1.0
+        }
+    ],
+    "results": [
+        {
+            "id": "bank_scam_01",
+            "passed": true,
+            "finalRiskLevel": "CRITICAL",
+            "detectedScenario": "BANK_FRAUD_IMPERSONATION",
+            "finalStage": "STAGE_5",
+            "timeToHighRiskMs": 30000,
+            "falsePositive": false,
+            "tags": [
+                "easy"
+            ],
+            "notes": []
+        },
+        {
+            "id": "police_scam_01",
+            "passed": true,
+            "finalRiskLevel": "CRITICAL",
+            "detectedScenario": "POLICE_AUTHORITY_SCAM",
+            "finalStage": "STAGE_5",
+            "timeToHighRiskMs": 20000,
+            "falsePositive": false,
+            "tags": [
+                "easy"
+            ],
+            "notes": []
+        },
+        {
+            "id": "family_scam_01",
+            "passed": true,
+            "finalRiskLevel": "CRITICAL",
+            "detectedScenario": "POLICE_AUTHORITY_SCAM",
+            "finalStage": "STAGE_5",
+            "timeToHighRiskMs": 20000,
+            "falsePositive": false,
+            "tags": [
+                "easy"
+            ],
+            "notes": [
+                "Scenario mismatch: expected CHILD, got POLICE_AUTHORITY_SCAM"
+            ]
+        },
+        {
+            "id": "tech_support_01",
+            "passed": true,
+            "finalRiskLevel": "CRITICAL",
+            "detectedScenario": "TECH_SUPPORT_SCAM",
+            "finalStage": "STAGE_5",
+            "timeToHighRiskMs": 30000,
+            "falsePositive": false,
+            "tags": [
+                "easy"
+            ],
+            "notes": []
+        },
+        {
+            "id": "delivery_scam_01",
+            "passed": true,
+            "finalRiskLevel": "CRITICAL",
+            "detectedScenario": "DELIVERY_MARKETPLACE_SCAM",
+            "finalStage": "STAGE_5",
+            "timeToHighRiskMs": 20000,
+            "falsePositive": false,
+            "tags": [
+                "easy"
+            ],
+            "notes": []
+        },
+        {
+            "id": "bank_scam_02",
+            "passed": true,
+            "finalRiskLevel": "CRITICAL",
+            "detectedScenario": "BANK_FRAUD_IMPERSONATION",
+            "finalStage": "STAGE_5",
+            "timeToHighRiskMs": 28000,
+            "falsePositive": false,
+            "tags": [
+                "easy"
+            ],
+            "notes": []
+        },
+        {
+            "id": "investment_scam_01",
+            "passed": true,
+            "finalRiskLevel": "SUSPICIOUS",
+            "detectedScenario": null,
+            "finalStage": "STAGE_5",
+            "timeToHighRiskMs": null,
+            "falsePositive": false,
+            "tags": [
+                "easy"
+            ],
+            "notes": []
+        },
+        {
+            "id": "bank_scam_paraphrase_01",
+            "passed": true,
+            "finalRiskLevel": "CRITICAL",
+            "detectedScenario": "BANK_FRAUD_IMPERSONATION",
+            "finalStage": "STAGE_5",
+            "timeToHighRiskMs": 30000,
+            "falsePositive": false,
+            "tags": [
+                "paraphrase"
+            ],
+            "notes": []
+        },
+        {
+            "id": "bank_scam_paraphrase_heldout_01",
+            "passed": false,
+            "finalRiskLevel": "SAFE",
+            "detectedScenario": null,
+            "finalStage": "STAGE_0",
+            "timeToHighRiskMs": null,
+            "falsePositive": false,
+            "tags": [
+                "paraphrase",
+                "heldout"
+            ],
+            "notes": [
+                "Risk SAFE below expected min SUSPICIOUS"
+            ]
+        },
+        {
+            "id": "police_scam_paraphrase_01",
+            "passed": true,
+            "finalRiskLevel": "CRITICAL",
+            "detectedScenario": "POLICE_AUTHORITY_SCAM",
+            "finalStage": "STAGE_5",
+            "timeToHighRiskMs": 30000,
+            "falsePositive": false,
+            "tags": [
+                "paraphrase"
+            ],
+            "notes": []
+        },
+        {
+            "id": "family_scam_paraphrase_01",
+            "passed": true,
+            "finalRiskLevel": "CRITICAL",
+            "detectedScenario": null,
+            "finalStage": "STAGE_4",
+            "timeToHighRiskMs": 20000,
+            "falsePositive": false,
+            "tags": [
+                "paraphrase"
+            ],
+            "notes": []
+        },
+        {
+            "id": "tech_support_paraphrase_01",
+            "passed": true,
+            "finalRiskLevel": "CRITICAL",
+            "detectedScenario": "FINANCIAL_TRANSFER_SCAM",
+            "finalStage": "STAGE_5",
+            "timeToHighRiskMs": 30000,
+            "falsePositive": false,
+            "tags": [
+                "paraphrase"
+            ],
+            "notes": []
+        },
+        {
+            "id": "delivery_scam_paraphrase_01",
+            "passed": true,
+            "finalRiskLevel": "CRITICAL",
+            "detectedScenario": null,
+            "finalStage": "STAGE_0",
+            "timeToHighRiskMs": 20000,
+            "falsePositive": false,
+            "tags": [
+                "paraphrase"
+            ],
+            "notes": []
+        },
+        {
+            "id": "bank_scam_partial_01",
+            "passed": true,
+            "finalRiskLevel": "MONITORING",
+            "detectedScenario": null,
+            "finalStage": "STAGE_0",
+            "timeToHighRiskMs": null,
+            "falsePositive": false,
+            "tags": [
+                "partial"
+            ],
+            "notes": []
+        },
+        {
+            "id": "police_scam_partial_01",
+            "passed": true,
+            "finalRiskLevel": "SUSPICIOUS",
+            "detectedScenario": null,
+            "finalStage": "STAGE_0",
+            "timeToHighRiskMs": 20000,
+            "falsePositive": false,
+            "tags": [
+                "partial"
+            ],
+            "notes": []
+        },
+        {
+            "id": "delivery_scam_partial_01",
+            "passed": true,
+            "finalRiskLevel": "SUSPICIOUS",
+            "detectedScenario": null,
+            "finalStage": "STAGE_0",
+            "timeToHighRiskMs": null,
+            "falsePositive": false,
+            "tags": [
+                "partial"
+            ],
+            "notes": []
+        },
+        {
+            "id": "legit_bank_01",
+            "passed": true,
+            "finalRiskLevel": "SAFE",
+            "detectedScenario": null,
+            "finalStage": "STAGE_0",
+            "timeToHighRiskMs": null,
+            "falsePositive": false,
+            "tags": [
+                "easy"
+            ],
+            "notes": []
+        },
+        {
+            "id": "legit_delivery_01",
+            "passed": true,
+            "finalRiskLevel": "SAFE",
+            "detectedScenario": null,
+            "finalStage": "STAGE_0",
+            "timeToHighRiskMs": null,
+            "falsePositive": false,
+            "tags": [
+                "easy"
+            ],
+            "notes": []
+        },
+        {
+            "id": "legit_friend_01",
+            "passed": true,
+            "finalRiskLevel": "SAFE",
+            "detectedScenario": null,
+            "finalStage": "STAGE_0",
+            "timeToHighRiskMs": null,
+            "falsePositive": false,
+            "tags": [
+                "easy"
+            ],
+            "notes": []
+        },
+        {
+            "id": "legit_bank_fraud_alert_01",
+            "passed": true,
+            "finalRiskLevel": "MONITORING",
+            "detectedScenario": null,
+            "finalStage": "STAGE_0",
+            "timeToHighRiskMs": null,
+            "falsePositive": false,
+            "tags": [
+                "hard_negative"
+            ],
+            "notes": []
+        },
+        {
+            "id": "legit_bank_card_block_01",
+            "passed": true,
+            "finalRiskLevel": "MONITORING",
+            "detectedScenario": null,
+            "finalStage": "STAGE_0",
+            "timeToHighRiskMs": null,
+            "falsePositive": false,
+            "tags": [
+                "hard_negative"
+            ],
+            "notes": []
+        },
+        {
+            "id": "legit_police_info_01",
+            "passed": true,
+            "finalRiskLevel": "SAFE",
+            "detectedScenario": null,
+            "finalStage": "STAGE_0",
+            "timeToHighRiskMs": null,
+            "falsePositive": false,
+            "tags": [
+                "hard_negative"
+            ],
+            "notes": []
+        },
+        {
+            "id": "legit_delivery_reschedule_01",
+            "passed": true,
+            "finalRiskLevel": "MONITORING",
+            "detectedScenario": null,
+            "finalStage": "STAGE_0",
+            "timeToHighRiskMs": null,
+            "falsePositive": false,
+            "tags": [
+                "hard_negative"
+            ],
+            "notes": []
+        },
+        {
+            "id": "legit_tech_support_01",
+            "passed": true,
+            "finalRiskLevel": "SAFE",
+            "detectedScenario": null,
+            "finalStage": "STAGE_0",
+            "timeToHighRiskMs": null,
+            "falsePositive": false,
+            "tags": [
+                "hard_negative"
+            ],
+            "notes": []
+        },
+        {
+            "id": "legit_family_worry_01",
+            "passed": true,
+            "finalRiskLevel": "SAFE",
+            "detectedScenario": null,
+            "finalStage": "STAGE_0",
+            "timeToHighRiskMs": null,
+            "falsePositive": false,
+            "tags": [
+                "hard_negative"
+            ],
+            "notes": []
+        },
+        {
+            "id": "noisy_ambient_01",
+            "passed": true,
+            "finalRiskLevel": "SAFE",
+            "detectedScenario": null,
+            "finalStage": "STAGE_0",
+            "timeToHighRiskMs": null,
+            "falsePositive": false,
+            "tags": [
+                "noise"
+            ],
+            "notes": []
+        },
+        {
+            "id": "noisy_ambient_02",
+            "passed": true,
+            "finalRiskLevel": "SAFE",
+            "detectedScenario": null,
+            "finalStage": "STAGE_0",
+            "timeToHighRiskMs": null,
+            "falsePositive": false,
+            "tags": [
+                "noise"
+            ],
+            "notes": []
+        },
+        {
+            "id": "noisy_ambient_03",
+            "passed": true,
+            "finalRiskLevel": "SAFE",
+            "detectedScenario": null,
+            "finalStage": "STAGE_0",
+            "timeToHighRiskMs": null,
+            "falsePositive": false,
+            "tags": [
+                "noise"
+            ],
+            "notes": []
+        }
+    ]
+}

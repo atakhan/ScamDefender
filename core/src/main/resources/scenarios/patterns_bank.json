@@ -1,132 +1,97 @@
 {
   "phrases": [
-  {
-    "phrase": "служба безопасности банка",
-    "pattern": "AUTHORITY_PLAY",
-    "weight": 0.9
-  },
-  {
-    "phrase": "это банк",
-    "pattern": "AUTHORITY_PLAY",
-    "weight": 0.85
-  },
-  {
-    "phrase": "из банка",
-    "pattern": "AUTHORITY_PLAY",
-    "weight": 0.8
-  },
-  {
-    "phrase": "следователь",
-    "pattern": "AUTHORITY_PLAY",
-    "weight": 0.9
-  },
-  {
-    "phrase": "это полиция",
-    "pattern": "AUTHORITY_PLAY",
-    "weight": 0.9
-  },
-  {
-    "phrase": "служба поддержки",
-    "pattern": "AUTHORITY_PLAY",
-    "weight": 0.7
-  },
-  {
-    "phrase": "подозрительная операция",
-    "pattern": "PROBLEM_INJECTION",
-    "weight": 0.85
-  },
-  {
-    "phrase": "уголовное дело",
-    "pattern": "PROBLEM_INJECTION",
-    "weight": 0.9
-  },
-  {
-    "phrase": "взлом",
-    "pattern": "PROBLEM_INJECTION",
-    "weight": 0.8
-  },
-  {
-    "phrase": "срочно",
-    "pattern": "URGENCY_ESCALATION",
-    "weight": 0.8
-  },
-  {
-    "phrase": "немедленно",
-    "pattern": "URGENCY_ESCALATION",
-    "weight": 0.85
-  },
-  {
-    "phrase": "до конца дня",
-    "pattern": "URGENCY_ESCALATION",
-    "weight": 0.75
-  },
-  {
-    "phrase": "не сообщайте никому",
-    "pattern": "ISOLATION_SIGNAL",
-    "weight": 0.95
-  },
-  {
-    "phrase": "никому не говорите",
-    "pattern": "ISOLATION_SIGNAL",
-    "weight": 0.95
-  },
-  {
-    "phrase": "не кладите трубку",
-    "pattern": "ISOLATION_SIGNAL",
-    "weight": 0.85
-  },
-  {
-    "phrase": "переведите деньги",
-    "pattern": "ACTION_REQUEST",
-    "weight": 0.95
-  },
-  {
-    "phrase": "переведите",
-    "pattern": "ACTION_REQUEST",
-    "weight": 0.85
-  },
-  {
-    "phrase": "скажите код",
-    "pattern": "ACTION_REQUEST",
-    "weight": 0.9
-  },
-  {
-    "phrase": "продиктуйте код",
-    "pattern": "ACTION_REQUEST",
-    "weight": 0.95
-  },
-  {
-    "phrase": "подтвердите данные",
-    "pattern": "ACTION_REQUEST",
-    "weight": 0.8
-  },
-  {
-    "phrase": "безопасный счёт",
-    "pattern": "ACTION_REQUEST",
-    "weight": 0.85
-  },
-  {
-    "phrase": "ваш сын в полиции",
-    "pattern": "FEAR_THREAT",
-    "weight": 0.9
-  },
-  {
-    "phrase": "родственник в опасности",
-    "pattern": "FEAR_THREAT",
-    "weight": 0.85
-  }
+    { "phrase": "служба безопасности банка", "pattern": "AUTHORITY_PLAY", "weight": 0.9 },
+    { "phrase": "это банк", "pattern": "AUTHORITY_PLAY", "weight": 0.85 },
+    { "phrase": "из банка", "pattern": "AUTHORITY_PLAY", "weight": 0.8 },
+    { "phrase": "следователь", "pattern": "AUTHORITY_PLAY", "weight": 0.9 },
+    { "phrase": "это полиция", "pattern": "AUTHORITY_PLAY", "weight": 0.9 },
+    { "phrase": "служба поддержки", "pattern": "AUTHORITY_PLAY", "weight": 0.7 },
+    { "phrase": "борьбы с мошенничеством", "pattern": "AUTHORITY_PLAY", "weight": 0.88 },
+    { "phrase": "уголовного розыска", "pattern": "AUTHORITY_PLAY", "weight": 0.9 },
+    { "phrase": "центр защиты аккаунтов", "pattern": "AUTHORITY_PLAY", "weight": 0.8 },
+    { "phrase": "отдел противодействия", "pattern": "AUTHORITY_PLAY", "weight": 0.85 },
+    { "phrase": "я юрист", "pattern": "AUTHORITY_PLAY", "weight": 0.75 },
+
+    { "phrase": "подозрительная операция", "pattern": "PROBLEM_INJECTION", "weight": 0.85 },
+    { "phrase": "уголовное дело", "pattern": "PROBLEM_INJECTION", "weight": 0.9 },
+    { "phrase": "взлом", "pattern": "PROBLEM_INJECTION", "weight": 0.8 },
+    { "phrase": "странный платёж", "pattern": "PROBLEM_INJECTION", "weight": 0.85 },
+    { "phrase": "материалы по статье", "pattern": "PROBLEM_INJECTION", "weight": 0.88 },
+    { "phrase": "пытались взломать", "pattern": "PROBLEM_INJECTION", "weight": 0.85 },
+    { "phrase": "ваш ребёнок задержан", "pattern": "PROBLEM_INJECTION", "weight": 0.9 },
+    { "phrase": "зависла пошлина", "pattern": "PROBLEM_INJECTION", "weight": 0.8 },
+    { "phrase": "проблема с доставкой", "pattern": "PROBLEM_INJECTION", "weight": 0.7 },
+
+    { "phrase": "срочно", "pattern": "URGENCY_ESCALATION", "weight": 0.8 },
+    { "phrase": "немедленно", "pattern": "URGENCY_ESCALATION", "weight": 0.85 },
+    { "phrase": "до конца дня", "pattern": "URGENCY_ESCALATION", "weight": 0.75 },
+    { "phrase": "нельзя откладывать", "pattern": "URGENCY_ESCALATION", "weight": 0.88 },
+    { "phrase": "прямо сейчас", "pattern": "URGENCY_ESCALATION", "weight": 0.85 },
+    { "phrase": "ближайшие минуты", "pattern": "URGENCY_ESCALATION", "weight": 0.85 },
+    { "phrase": "время критичн", "pattern": "URGENCY_ESCALATION", "weight": 0.8 },
+    { "phrase": "без оплаты сегодня", "pattern": "URGENCY_ESCALATION", "weight": 0.85 },
+    { "phrase": "уйдёт обратно", "pattern": "URGENCY_ESCALATION", "weight": 0.8 },
+
+    { "phrase": "не сообщайте никому", "pattern": "ISOLATION_SIGNAL", "weight": 0.95 },
+    { "phrase": "никому не говорите", "pattern": "ISOLATION_SIGNAL", "weight": 0.95 },
+    { "phrase": "не кладите трубку", "pattern": "ISOLATION_SIGNAL", "weight": 0.85 },
+    { "phrase": "в тайне", "pattern": "ISOLATION_SIGNAL", "weight": 0.85 },
+    { "phrase": "не рассказывать", "pattern": "ISOLATION_SIGNAL", "weight": 0.88 },
+    { "phrase": "лучше не звонить", "pattern": "ISOLATION_SIGNAL", "weight": 0.85 },
+    { "phrase": "не звоните ему", "pattern": "ISOLATION_SIGNAL", "weight": 0.9 },
+    { "phrase": "тайне от родственников", "pattern": "ISOLATION_SIGNAL", "weight": 0.9 },
+
+    { "phrase": "переведите деньги", "pattern": "ACTION_REQUEST", "weight": 0.95 },
+    { "phrase": "переведите", "pattern": "ACTION_REQUEST", "weight": 0.85 },
+    { "phrase": "скажите код", "pattern": "ACTION_REQUEST", "weight": 0.9 },
+    { "phrase": "продиктуйте код", "pattern": "ACTION_REQUEST", "weight": 0.95 },
+    { "phrase": "подтвердите данные", "pattern": "ACTION_REQUEST", "weight": 0.8 },
+    { "phrase": "безопасный счёт", "pattern": "ACTION_REQUEST", "weight": 0.85 },
+    { "phrase": "защищённый счёт", "pattern": "ACTION_REQUEST", "weight": 0.9 },
+    { "phrase": "назовите цифры", "pattern": "ACTION_REQUEST", "weight": 0.9 },
+    { "phrase": "цифры из сообщения", "pattern": "ACTION_REQUEST", "weight": 0.9 },
+    { "phrase": "передайте сумму", "pattern": "ACTION_REQUEST", "weight": 0.92 },
+    { "phrase": "скачайте утилиту", "pattern": "ACTION_REQUEST", "weight": 0.88 },
+    { "phrase": "пароль из письма", "pattern": "ACTION_REQUEST", "weight": 0.85 },
+    { "phrase": "реквизиты для", "pattern": "ACTION_REQUEST", "weight": 0.85 },
+    { "phrase": "пришлите чек", "pattern": "ACTION_REQUEST", "weight": 0.85 },
+    { "phrase": "код из смс", "pattern": "ACTION_REQUEST", "weight": 0.9 },
+
+    { "phrase": "ваш сын в полиции", "pattern": "FEAR_THREAT", "weight": 0.9 },
+    { "phrase": "родственник в опасности", "pattern": "FEAR_THREAT", "weight": 0.85 },
+    { "phrase": "ребёнок задержан", "pattern": "FEAR_THREAT", "weight": 0.88 }
   ],
   "semanticAnchors": [
-  {
-    "anchor": "верификация счёта",
-    "pattern": "ACTION_REQUEST",
-    "similarPhrases": ["подтвердите операцию", "проверка счёта"]
-  },
-  {
-    "anchor": "безопасный перевод",
-    "pattern": "ACTION_REQUEST",
-    "similarPhrases": ["защитите средства", "спасите деньги"]
-  }
+    {
+      "anchor": "верификация счёта",
+      "pattern": "ACTION_REQUEST",
+      "similarPhrases": ["подтвердите операцию", "проверка счёта", "назовите цифры из сообщения"]
+    },
+    {
+      "anchor": "безопасный перевод",
+      "pattern": "ACTION_REQUEST",
+      "similarPhrases": ["защитите средства", "спасите деньги", "отправьте на защищённый счёт"]
+    },
+    {
+      "anchor": "изоляция от близких",
+      "pattern": "ISOLATION_SIGNAL",
+      "similarPhrases": ["не говорите родственникам", "держите в тайне", "никому не рассказывайте"]
+    },
+    {
+      "anchor": "давление по времени",
+      "pattern": "URGENCY_ESCALATION",
+      "similarPhrases": ["нельзя откладывать", "только сегодня", "в ближайшие минуты"]
+    },
+    {
+      "anchor": "банк или полиция представляется",
+      "pattern": "AUTHORITY_PLAY",
+      "similarPhrases": ["отдел мошенничества банка", "сотрудник розыска", "служба безопасности"]
+    },
+    {
+      "anchor": "проблема со счётом или делом",
+      "pattern": "PROBLEM_INJECTION",
+      "similarPhrases": ["странный платёж", "уголовные материалы", "взлом аккаунта"]
+    }
   ],
   "fsmTransitions": [
     "AUTHORITY_PLAY",

@@ -40,6 +40,9 @@ enum class PatternSource {
     @SerialName("semantic")
     SEMANTIC,
 
+    @SerialName("heuristic")
+    HEURISTIC,
+
     @SerialName("fsm")
     FSM,
 }

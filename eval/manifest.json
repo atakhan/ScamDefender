@@ -5,74 +5,195 @@
     "expectedScenario": "BANK_FRAUD",
     "expectedMinRisk": "SUSPICIOUS",
     "isScam": true,
-    "expectedStageAtEnd": "STAGE_5"
+    "expectedStageAtEnd": "STAGE_5",
+    "tags": ["easy"]
   },
   {
     "id": "police_scam_01",
     "transcriptFile": "transcripts/police_scam_01.txt",
     "expectedScenario": "POLICE",
     "expectedMinRisk": "SUSPICIOUS",
-    "isScam": true
+    "isScam": true,
+    "tags": ["easy"]
   },
   {
     "id": "family_scam_01",
     "transcriptFile": "transcripts/family_scam_01.txt",
     "expectedScenario": "CHILD",
     "expectedMinRisk": "SUSPICIOUS",
-    "isScam": true
+    "isScam": true,
+    "tags": ["easy"]
   },
   {
     "id": "tech_support_01",
     "transcriptFile": "transcripts/tech_support_01.txt",
     "expectedMinRisk": "SUSPICIOUS",
-    "isScam": true
+    "isScam": true,
+    "tags": ["easy"]
   },
   {
     "id": "delivery_scam_01",
     "transcriptFile": "transcripts/delivery_scam_01.txt",
-    "expectedMinRisk": "MONITORING",
-    "isScam": true
+    "expectedMinRisk": "SUSPICIOUS",
+    "isScam": true,
+    "tags": ["easy"]
   },
   {
     "id": "bank_scam_02",
     "transcriptFile": "transcripts/bank_scam_02.txt",
     "expectedMinRisk": "SUSPICIOUS",
-    "isScam": true
+    "isScam": true,
+    "tags": ["easy"]
   },
   {
     "id": "investment_scam_01",
     "transcriptFile": "transcripts/investment_scam_01.txt",
     "expectedMinRisk": "SUSPICIOUS",
-    "isScam": true
+    "isScam": true,
+    "tags": ["easy"]
+  },
+  {
+    "id": "bank_scam_paraphrase_01",
+    "transcriptFile": "transcripts/bank_scam_paraphrase_01.txt",
+    "expectedMinRisk": "SUSPICIOUS",
+    "isScam": true,
+    "tags": ["paraphrase"]
+  },
+  {
+    "id": "bank_scam_paraphrase_heldout_01",
+    "transcriptFile": "transcripts/bank_scam_paraphrase_heldout_01.txt",
+    "expectedMinRisk": "SUSPICIOUS",
+    "isScam": true,
+    "tags": ["paraphrase", "heldout"]
+  },
+  {
+    "id": "police_scam_paraphrase_01",
+    "transcriptFile": "transcripts/police_scam_paraphrase_01.txt",
+    "expectedMinRisk": "SUSPICIOUS",
+    "isScam": true,
+    "tags": ["paraphrase"]
+  },
+  {
+    "id": "family_scam_paraphrase_01",
+    "transcriptFile": "transcripts/family_scam_paraphrase_01.txt",
+    "expectedMinRisk": "SUSPICIOUS",
+    "isScam": true,
+    "tags": ["paraphrase"]
+  },
+  {
+    "id": "tech_support_paraphrase_01",
+    "transcriptFile": "transcripts/tech_support_paraphrase_01.txt",
+    "expectedMinRisk": "SUSPICIOUS",
+    "isScam": true,
+    "tags": ["paraphrase"]
+  },
+  {
+    "id": "delivery_scam_paraphrase_01",
+    "transcriptFile": "transcripts/delivery_scam_paraphrase_01.txt",
+    "expectedMinRisk": "SUSPICIOUS",
+    "isScam": true,
+    "tags": ["paraphrase"]
+  },
+  {
+    "id": "bank_scam_partial_01",
+    "transcriptFile": "transcripts/bank_scam_partial_01.txt",
+    "expectedMinRisk": "MONITORING",
+    "expectedMaxRisk": "HIGH_RISK",
+    "isScam": true,
+    "tags": ["partial"]
+  },
+  {
+    "id": "police_scam_partial_01",
+    "transcriptFile": "transcripts/police_scam_partial_01.txt",
+    "expectedMinRisk": "MONITORING",
+    "expectedMaxRisk": "HIGH_RISK",
+    "isScam": true,
+    "tags": ["partial"]
+  },
+  {
+    "id": "delivery_scam_partial_01",
+    "transcriptFile": "transcripts/delivery_scam_partial_01.txt",
+    "expectedMinRisk": "MONITORING",
+    "expectedMaxRisk": "SUSPICIOUS",
+    "isScam": true,
+    "tags": ["partial"]
   },
   {
     "id": "legit_bank_01",
     "transcriptFile": "transcripts/legit_bank_01.txt",
-    "isScam": false
+    "isScam": false,
+    "tags": ["easy"]
   },
   {
     "id": "legit_delivery_01",
     "transcriptFile": "transcripts/legit_delivery_01.txt",
-    "isScam": false
+    "isScam": false,
+    "tags": ["easy"]
   },
   {
     "id": "legit_friend_01",
     "transcriptFile": "transcripts/legit_friend_01.txt",
-    "isScam": false
+    "isScam": false,
+    "tags": ["easy"]
+  },
+  {
+    "id": "legit_bank_fraud_alert_01",
+    "transcriptFile": "transcripts/legit_bank_fraud_alert_01.txt",
+    "isScam": false,
+    "expectedMaxRisk": "MONITORING",
+    "tags": ["hard_negative"]
+  },
+  {
+    "id": "legit_bank_card_block_01",
+    "transcriptFile": "transcripts/legit_bank_card_block_01.txt",
+    "isScam": false,
+    "expectedMaxRisk": "MONITORING",
+    "tags": ["hard_negative"]
+  },
+  {
+    "id": "legit_police_info_01",
+    "transcriptFile": "transcripts/legit_police_info_01.txt",
+    "isScam": false,
+    "expectedMaxRisk": "MONITORING",
+    "tags": ["hard_negative"]
+  },
+  {
+    "id": "legit_delivery_reschedule_01",
+    "transcriptFile": "transcripts/legit_delivery_reschedule_01.txt",
+    "isScam": false,
+    "expectedMaxRisk": "MONITORING",
+    "tags": ["hard_negative"]
+  },
+  {
+    "id": "legit_tech_support_01",
+    "transcriptFile": "transcripts/legit_tech_support_01.txt",
+    "isScam": false,
+    "expectedMaxRisk": "MONITORING",
+    "tags": ["hard_negative"]
+  },
+  {
+    "id": "legit_family_worry_01",
+    "transcriptFile": "transcripts/legit_family_worry_01.txt",
+    "isScam": false,
+    "expectedMaxRisk": "MONITORING",
+    "tags": ["hard_negative"]
   },
   {
     "id": "noisy_ambient_01",
     "transcriptFile": "transcripts/noisy_ambient_01.txt",
-    "isScam": false
+    "isScam": false,
+    "tags": ["noise"]
   },
   {
     "id": "noisy_ambient_02",
     "transcriptFile": "transcripts/noisy_ambient_02.txt",
-    "isScam": false
+    "isScam": false,
+    "tags": ["noise"]
   },
   {
     "id": "noisy_ambient_03",
     "transcriptFile": "transcripts/noisy_ambient_03.txt",
-    "isScam": false
+    "isScam": false,
+    "tags": ["noise"]
   }
 ]
